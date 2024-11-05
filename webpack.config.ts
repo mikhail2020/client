@@ -8,6 +8,9 @@ const config: Configuration = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+    },
     module: {
         rules: [
             { 
