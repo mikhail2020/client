@@ -2,6 +2,9 @@ import { Configuration } from 'webpack';
 import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
+
 const config: Configuration = {
     entry: './src/index.tsx',
     output: {
@@ -13,11 +16,24 @@ const config: Configuration = {
     },
     module: {
         rules: [
-            { 
+            {
+                test: /\.module.css$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            esModule: false,
+                        },
+                    },
+                ],
+            },
+            {
                 test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                loader: "ts-loader" 
-            }
+                loader: "ts-loader"
+            },
         ]
     },
     plugins: [
